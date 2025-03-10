@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>活動報名表</h1>
+    ghhhhhhhyu\\\
+
     
 </body>
 </html>
