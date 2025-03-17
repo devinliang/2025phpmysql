@@ -68,7 +68,7 @@
 
         <p>
         <label for="">場地</label>
-        <input type="radio" name="place" id="place1" value="5">
+        <input type="radio" name="place" id="place1" value="5" required>
         <label for="place1">非常滿意</label>
         <input type="radio" name="place" id="place2" value="4">
         <label for="place2">滿意</label>
@@ -82,7 +82,7 @@
         
         <p>
         <label for="">設備</label>
-        <input type="radio" name="device" id="device1" value="5">
+        <input type="radio" name="device" id="device1" value="5" required>
         <label for="device1">非常滿意</label>
         <input type="radio" name="device" id="device2" value="4">
         <label for="device2">滿意</label>
@@ -96,7 +96,7 @@
 
         <p>
         <label for="">服務</label>
-        <input type="radio" name="service" id="service1" value="5">
+        <input type="radio" name="service" id="service1" value="5" required>
         <label for="service1">非常滿意</label>
         <input type="radio" name="service" id="service2" value="4">
         <label for="service2">滿意</label>
