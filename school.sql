@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2025-04-07 09:50:40
+-- 產生時間： 2025-04-21 10:04:30
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.0.28
 
@@ -117,6 +117,52 @@ INSERT INTO `movie` (`id`, `title`, `year`, `director`, `mtype`, `mdate`, `conte
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `pname` varchar(64) NOT NULL COMMENT '產品名稱',
+  `pspec` varchar(64) NOT NULL COMMENT '產品規格',
+  `price` int(11) NOT NULL COMMENT '定價',
+  `pdate` date NOT NULL COMMENT '製造日期',
+  `content` text NOT NULL COMMENT '內容說明'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `product`
+--
+
+INSERT INTO `product` (`id`, `pname`, `pspec`, `price`, `pdate`, `content`) VALUES
+(1, '無線滑鼠', '黑色, USB連接', 499, '2024-01-15', '輕巧設計，適合日常使用'),
+(2, '機械鍵盤', '青軸, USB-C', 1899, '2024-01-20', '具備背光與高耐用性'),
+(3, '27吋顯示器', 'Full HD, HDMI', 3990, '2023-12-10', '支援護眼模式與低藍光'),
+(4, 'USB-C 轉 HDMI 轉接器', '鋁合金材質', 299, '2024-02-01', '支援4K輸出'),
+(5, '筆記型電腦支架', '鋁合金, 折疊式', 699, '2023-11-30', '多角度可調整，方便攜帶'),
+(6, '藍牙喇叭', 'IPX5防水', 899, '2023-10-18', '支援藍牙5.0，高音質輸出'),
+(7, '外接硬碟', '1TB, USB 3.0', 2190, '2023-09-22', '適合資料備份與攜帶'),
+(8, '無線充電盤', '支援Qi標準', 450, '2024-03-05', '快速充電，兼容多款手機'),
+(9, '手機支架', '桌上型, 黑色', 199, '2023-12-01', '適合觀看影片與直播'),
+(10, '電競耳機', '7.1聲道, 有線', 1590, '2024-01-08', '適合遊戲與線上會議'),
+(11, '筆記型電腦', 'i5, 16GB, 512GB SSD', 28900, '2024-03-15', '高效能辦公用機'),
+(12, '手機三腳架', '可伸縮, 藍色', 299, '2023-12-18', '適用於拍照與錄影'),
+(13, '網路攝影機', '1080p, USB', 750, '2024-02-22', '適合遠距會議'),
+(14, 'LED 燈條', 'RGB, USB供電', 380, '2023-09-15', '可調光，增添氛圍'),
+(15, '掃描器', 'A4尺寸, 1200dpi', 3290, '2023-11-12', '適合文件與照片掃描'),
+(16, '辦公椅', '可調高度, 黑色', 2490, '2023-10-05', '舒適坐墊，支撐腰背'),
+(18, '耳塞式耳機', '有線, 白色', 350, '2024-03-01', '輕巧便攜，音質清晰'),
+(19, '滑鼠墊', '大型, 防滑', 220, '2023-07-10', '適合電競與設計工作'),
+(20, '電子書閱讀器', '6吋, 內建燈光', 3990, '2024-04-01', '適合長時間閱讀'),
+(21, '智慧手環', 'OLED螢幕, 防水', 1290, '2024-02-10', '具備心率偵測、睡眠分析與步數統計功能。\n適合日常運動與健康追蹤使用。'),
+(22, '雷射印表機', '黑白, Wi-Fi', 4990, '2023-10-20', '列印速度快且解析度高，支援無線連線。\n搭配手機APP可進行遠端列印，非常方便。'),
+(23, '4K 電視盒', '支援Netflix/Youtube', 1990, '2024-01-12', '輕巧設計，支援多種串流平台。\n適合家中娛樂中心使用，也可透過USB播放本地影片。'),
+(24, '行動電源', '20000mAh, 雙輸出', 790, '2023-11-05', '容量大，可同時為兩台設備充電。\n支援快充與LED電量顯示，非常實用。'),
+(25, '智慧語音助理喇叭', 'Wi-Fi連線, 雙麥克風', 1790, '2023-12-25', '支援多種語音指令操作，可控制智慧家電。\n同時也是一個高品質的藍牙喇叭。'),
+(26, '電容式觸控筆', '支援iOS/Android', 380, '2024-03-08', '適合用於繪圖、筆記與簽名。\n筆尖精細、手感舒適，是數位藝術愛好者的好夥伴。');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `student`
 --
 
@@ -153,18 +199,19 @@ INSERT INTO `student` (`id`, `schid`, `name`, `gender`, `birthday`, `email`, `ad
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL COMMENT '主鍵',
-  `username` varchar(50) NOT NULL COMMENT '使用者名稱',
-  `password` varchar(255) NOT NULL COMMENT '密碼 (建議使用雜湊加密)',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `userpass` varchar(255) NOT NULL,
+  `userlevel` int(1) NOT NULL DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'devin', '$2y$10$7FS/wKsIclTbCipIyHWgSOkcXSnnJ.YtcnMsXQ047FnWwGAu7CBke', '2025-04-07 07:39:22');
+INSERT INTO `users` (`id`, `username`, `userpass`, `userlevel`, `created_at`) VALUES
+(1, 'devin', '$2y$10$Zpe/PW.i.ocpWe/puK.WS.Qc0PUcOxz/it.vLw8XKJTrPphB8Yil.', 0, '2025-04-21 14:42:16');
 
 --
 -- 已傾印資料表的索引
@@ -180,6 +227,12 @@ ALTER TABLE `book`
 -- 資料表索引 `movie`
 --
 ALTER TABLE `movie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `product`
+--
+ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -213,6 +266,12 @@ ALTER TABLE `movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主鍵', AUTO_INCREMENT=32;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `student`
 --
 ALTER TABLE `student`
@@ -222,7 +281,7 @@ ALTER TABLE `student`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主鍵', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
