@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+function loginOK() {
+    return (isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"]===true));
+}
+
+if (!loginOK()) { 
+    header("location: login.php");
+}
+
 $servername = "localhost";
 $username = "root"; // 根據你的資料庫設定修改
 $password = ""; // 根據你的資料庫設定修改

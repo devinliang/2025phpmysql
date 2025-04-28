@@ -1,11 +1,15 @@
 <?php
-$servername = "localhost";
-$username = "root"; // 根據你的資料庫設定修改
-$password = ""; // 根據你的資料庫設定修改
-$dbname = "school"; // 修改為你的資料庫名稱
+session_start();
+
+// Include config file
+require_once "dbconfig.php";
+
+function loginOK() {
+    return (isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"]===true));
+}
 
 // 建立連線
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $dbuser, $dbpass, $database);
 
 // 檢查連線
 if ($conn->connect_error) {
@@ -41,12 +45,21 @@ $conn->close();
         table { width: 100%; border-collapse: collapse; }
         th, td { border: 1px solid black; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
+        h1 {text-align:center;}
     </style>
 </head>
 <body>
-    <h2>書籍管理</h2>
-    <a href="book_add.php">新增書籍</a>
-    <h3>書籍列表</h3>
+    <h1>書籍管理</h1>
+
+    <p>
+    <?php if (loginOK()) { ?>
+        <?= $_SESSION["username"]; ?>
+        <a class="btn btn-success" href="./logout.php">Logout</a>
+    <?php } else { ?>
+        <a class="btn btn-primary" href="./login.php">登入管理</a>
+    <?php } ?> 
+    </p>
+
     <table>
         <tr>
             <th>ID</th>
@@ -56,7 +69,12 @@ $conn->close();
             <th>出版日期</th>
             <th>定價</th>
             <th>內容說明</th>
-            <th>操作</th>
+            <th>操作
+            <?php if (loginOK()) { ?>
+                <a href="book_add.php">新增</a>
+            <?php } ?> 
+
+            </th>
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
         <tr>
@@ -69,8 +87,10 @@ $conn->close();
             <td><?php echo nl2br($row["content"]); ?></td>
             <td>
                 <a href="book_detail.php?id=<?php echo $row['id']; ?>">查看</a>
-                <a href="book_edit.php?id=<?php echo $row['id']; ?>">修改</a>
-                <a href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('確定刪除?');">刪除</a>
+                <?php if (loginOK()) { ?>
+                    <a href="book_edit.php?id=<?php echo $row['id']; ?>">修改</a>
+                    <a href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('確定刪除?');">刪除</a>
+                <?php } ?> 
             </td>
         </tr>
         <?php endwhile; ?>
