@@ -21,17 +21,26 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">登入管理</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-            ...
+                <form action="#" method="post">
+                    <div class="form-floating m-1">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="User Name" required="required">
+                        <label for="username">User Name</label>
+                    </div>
+                    <div class="form-floating m-1">
+                        <input type="password" class="form-control" name="userpass" id="userpass" placeholder="Password" required="required">
+                        <label for="userpass">Password</label>
+                    </div>
+                </form>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="login_button">登入系統</button>
+                
             </div>
 
         </div>
