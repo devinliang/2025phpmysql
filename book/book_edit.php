@@ -9,12 +9,10 @@ if (!loginOK()) {
     header("location: login.php");
 }
 
-$servername = "localhost";
-$username = "root"; // 根據你的資料庫設定修改
-$password = ""; // 根據你的資料庫設定修改
-$dbname = "school"; // 修改為你的資料庫名稱
+// Include config file
+require_once "dbconfig.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $dbuser, $dbpass, $database);
 
 if ($conn->connect_error) {
     die("連線失敗: " . $conn->connect_error);

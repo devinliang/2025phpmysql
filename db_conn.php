@@ -9,9 +9,9 @@
 <?php
 
 // 設定主機、資料庫名稱、權限帳密
-$hostname = 'localhost';
-$database = 'school';
-$dbuser = 'root';
+$hostname = 'sql103.infinityfree.com';
+$database = 'if0_38960673_school';
+$dbuser = 'if0_38960673';
 $dbpass = '';
 
 try {
